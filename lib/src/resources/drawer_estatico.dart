@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,12 +36,12 @@ class _Drawer extends State<DrawerEstatico>{
             },
           ),
           ListTile(
-            title: Text('Item 2'),
+            title: Text('Calculadora'),
             onTap: () {
               // Update the state of the app
               // ...
               // Then close the drawer
-              Navigator.of(context).pushReplacementNamed('/contador');
+              Navigator.pushNamed(context,  '/calculadora');
             },
           ),
         ],
