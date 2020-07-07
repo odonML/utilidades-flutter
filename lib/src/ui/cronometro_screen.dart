@@ -15,6 +15,8 @@ class Cronometro extends StatefulWidget {
 class _Cronometro extends State<Cronometro> {
   var color = Colors.amber;
   var _texto = new TextStyle(fontSize: 25);
+
+  final s = 60;
   Timer timer;
 
   int contador;
@@ -137,16 +139,19 @@ class _Cronometro extends State<Cronometro> {
 
   void _play() {
     if (contador > 0) {
-      seg = contador * 60;
+      seg = contador * s;
       timer = new Timer.periodic(Duration(seconds: 1), (Timer t) => _tiempo());
     }
   }
 
   void _pause() {
     print('este es el $contador : $temp : $seg');
+    _texto = new TextStyle(fontSize: 25);
     setState(() {
+      _texto;
       contador = 0;
       temp = 0;
+      seg = 0;
     });
     return timer.cancel();
   }
@@ -160,7 +165,7 @@ class _Cronometro extends State<Cronometro> {
         seg;
       });
 
-      if (temp == 60 && seg > 10) {
+      if (temp == s && seg > 10) {
         print('minutos $contador');
         setState(() {
           temp = 0;
@@ -168,7 +173,7 @@ class _Cronometro extends State<Cronometro> {
         });
       } else if (seg <= 10) {
         print('minutos ultimo $contador'); //ALARMA
-        _texto = new TextStyle(color: Colors.red[900]);
+        _texto = new TextStyle(fontSize: 25, color: Colors.red[900]);
         setState(() {
           _texto;
         });
